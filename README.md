@@ -9,7 +9,8 @@ See [STATUS.md](STATUS.md) for what has actually been deployed and tested.
 - `config/monitoring.yaml`: retention, routing, and the agreed notification window.
 - `grafana/`: Helm chart and three provisioned dashboards; Grafana 13.3.0.
 - `scripts/`: guarded configuration merges, storage acceptance, NFS access capture.
-- `inventory/`: private NFS export/permission baseline. Do not publish this repo publicly.
+- `inventory/`: NFS export/permission baseline, approved by the owner for public
+  publication. Credentials and protected rollback backups remain excluded.
 - Sibling `../openshift-storage/truenas-csi/`: CSI operator, driver, storage class,
   MachineConfigs, and isolated storage-test resources.
 

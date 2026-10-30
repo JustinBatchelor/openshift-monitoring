@@ -48,16 +48,15 @@ again. Four unit tests and Helm/source validation also passed.
 - Slack workspace quiet hours and iPhone settings require configuration and
   daytime locked-phone validation: weekdays 09:00–18:00 America/New_York.
 - 24-hour and seven-day observations remain future checks; they are not complete.
-- The new private GitHub repository must exist before this project's initial
-  push. Full NFS permission inventory must not be pushed to a public repository.
-  The sibling storage changes were pushed to `JustinBatchelor/openshift-storage`
-  as commit `39fbaaa` on `main`. This monitoring project is committed locally.
-  The remote storage branch was verified at that commit. Both GitHub API and SSH
-  checks still report the monitoring repository unavailable. Create an empty
-  **private** repository at
-  <https://github.com/new?name=openshift-monitoring&visibility=private>, then verify
-  its visibility before pushing `main`. The connected GitHub tools do not expose
-  repository creation.
+
+## Repository publication
+
+The owner created `JustinBatchelor/openshift-monitoring` as a public repository
+and explicitly approved publishing the NFS permission inventory after reviewing
+what it reveals. The earlier private-repository requirement is superseded by
+that instruction. Credentials and protected backups remain outside Git.
+The sibling storage changes were pushed to `JustinBatchelor/openshift-storage`
+as commit `39fbaaa` on `main`, and that remote commit was verified.
 
 ## Retained acceptance data
 
