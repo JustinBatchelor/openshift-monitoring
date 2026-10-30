@@ -32,6 +32,13 @@
 
 ## Pending external setup / acceptance
 
+Rechecked October 29 at 22:54 America/New_York (October 30, 02:54 UTC):
+both nodes Ready, all operators Available/non-Degraded, monitoring and Grafana
+pods Running/Ready, and all three production monitoring PVCs Bound. The storage
+test namespace has no remaining pods or claims. Grafana authentication,
+datasource health, three dashboards, and the unchanged NFS access baseline passed
+again. Four unit tests and Helm/source validation also passed.
+
 - Slack plugin installation is confirmed, but workspace/channel tool calls return
   `Unknown tool`. No channels or messages have been created through the connector.
 - Slack webhooks for `#cluster-critical` and `#cluster-warnings` have not been
@@ -45,6 +52,12 @@
   push. Full NFS permission inventory must not be pushed to a public repository.
   The sibling storage changes were pushed to `JustinBatchelor/openshift-storage`
   as commit `39fbaaa` on `main`. This monitoring project is committed locally.
+  The remote storage branch was verified at that commit. Both GitHub API and SSH
+  checks still report the monitoring repository unavailable. Create an empty
+  **private** repository at
+  <https://github.com/new?name=openshift-monitoring&visibility=private>, then verify
+  its visibility before pushing `main`. The connected GitHub tools do not expose
+  repository creation.
 
 ## Retained acceptance data
 
