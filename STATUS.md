@@ -32,6 +32,8 @@
 
 ## Pending external setup / acceptance
 
+- Slack plugin installation is confirmed, but workspace/channel tool calls return
+  `Unknown tool`. No channels or messages have been created through the connector.
 - Slack webhooks for `#cluster-critical` and `#cluster-warnings` have not been
   supplied. Slack receivers are **not yet live**.
 - Healthchecks account/check and ping URL have not been supplied. External
@@ -41,6 +43,8 @@
 - 24-hour and seven-day observations remain future checks; they are not complete.
 - The new private GitHub repository must exist before this project's initial
   push. Full NFS permission inventory must not be pushed to a public repository.
+  The sibling storage changes were pushed to `JustinBatchelor/openshift-storage`
+  as commit `39fbaaa` on `main`. This monitoring project is committed locally.
 
 ## Retained acceptance data
 
