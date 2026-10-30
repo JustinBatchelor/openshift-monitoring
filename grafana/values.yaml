@@ -1,0 +1,14 @@
+image: docker.io/grafana/grafana:13.3.0
+host: grafana.apps.sno.batchelor.live
+storageClass: truenas-monitoring-iscsi
+storageSize: 5Gi
+adminSecret: grafana-admin
+metricsTokenSecret: grafana-metrics-token
+thanosURL: https://thanos-querier.openshift-monitoring.svc:9091
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: '1'
+    memory: 1Gi

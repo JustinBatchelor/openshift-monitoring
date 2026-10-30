@@ -1,0 +1,230 @@
+{
+  "exports": [
+    {
+      "datasetAccessProperties": {
+        "aclinherit": null,
+        "aclmode": {
+          "parsed": "discard",
+          "rawvalue": "discard",
+          "source": "INHERITED",
+          "source_info": "main",
+          "value": "DISCARD"
+        },
+        "acltype": {
+          "parsed": "posix",
+          "rawvalue": "posix",
+          "source": "INHERITED",
+          "source_info": "main",
+          "value": "POSIX"
+        },
+        "casesensitivity": {
+          "parsed": "sensitive",
+          "rawvalue": "sensitive",
+          "source": "NONE",
+          "source_info": null,
+          "value": "SENSITIVE"
+        },
+        "readonly": {
+          "parsed": false,
+          "rawvalue": "off",
+          "source": "DEFAULT",
+          "source_info": null,
+          "value": "OFF"
+        },
+        "sync": {
+          "parsed": "standard",
+          "rawvalue": "standard",
+          "source": "DEFAULT",
+          "source_info": null,
+          "value": "STANDARD"
+        }
+      },
+      "export": {
+        "aliases": [],
+        "comment": "",
+        "enabled": true,
+        "expose_snapshots": false,
+        "hosts": [],
+        "id": 4,
+        "locked": false,
+        "mapall_group": "plex",
+        "mapall_user": "plex",
+        "maproot_group": "",
+        "maproot_user": "",
+        "networks": [],
+        "path": "/mnt/main/plex",
+        "ro": false,
+        "security": []
+      },
+      "rootACL": {
+        "acl": [
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": true
+            },
+            "tag": "USER_OBJ",
+            "who": null
+          },
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": true
+            },
+            "tag": "GROUP_OBJ",
+            "who": null
+          },
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": true
+            },
+            "tag": "OTHER",
+            "who": null
+          }
+        ],
+        "acltype": "POSIX1E",
+        "gid": 65534,
+        "group": null,
+        "path": "/mnt/main/plex",
+        "trivial": true,
+        "uid": 65534,
+        "user": null
+      }
+    },
+    {
+      "datasetAccessProperties": {
+        "aclinherit": null,
+        "aclmode": {
+          "parsed": "discard",
+          "rawvalue": "discard",
+          "source": "INHERITED",
+          "source_info": "main",
+          "value": "DISCARD"
+        },
+        "acltype": {
+          "parsed": "posix",
+          "rawvalue": "posix",
+          "source": "INHERITED",
+          "source_info": "main",
+          "value": "POSIX"
+        },
+        "casesensitivity": {
+          "parsed": "sensitive",
+          "rawvalue": "sensitive",
+          "source": "NONE",
+          "source_info": null,
+          "value": "SENSITIVE"
+        },
+        "readonly": {
+          "parsed": false,
+          "rawvalue": "off",
+          "source": "DEFAULT",
+          "source_info": null,
+          "value": "OFF"
+        },
+        "sync": {
+          "parsed": "standard",
+          "rawvalue": "standard",
+          "source": "DEFAULT",
+          "source_info": null,
+          "value": "STANDARD"
+        }
+      },
+      "export": {
+        "aliases": [],
+        "comment": "",
+        "enabled": true,
+        "expose_snapshots": false,
+        "hosts": [],
+        "id": 7,
+        "locked": false,
+        "mapall_group": "",
+        "mapall_user": "",
+        "maproot_group": "wheel",
+        "maproot_user": "root",
+        "networks": [],
+        "path": "/mnt/main/sno",
+        "ro": false,
+        "security": [
+          "SYS"
+        ]
+      },
+      "rootACL": {
+        "acl": [
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": true
+            },
+            "tag": "USER_OBJ",
+            "who": null
+          },
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": false
+            },
+            "tag": "GROUP_OBJ",
+            "who": null
+          },
+          {
+            "default": false,
+            "id": -1,
+            "perms": {
+              "EXECUTE": true,
+              "READ": true,
+              "WRITE": false
+            },
+            "tag": "OTHER",
+            "who": null
+          }
+        ],
+        "acltype": "POSIX1E",
+        "gid": 65534,
+        "group": null,
+        "path": "/mnt/main/sno",
+        "trivial": true,
+        "uid": 65534,
+        "user": null
+      }
+    }
+  ],
+  "nfsService": {
+    "allow_nonroot": false,
+    "bindip": [],
+    "id": 1,
+    "keytab_has_nfs_spn": false,
+    "managed_nfsd": true,
+    "mountd_log": false,
+    "mountd_port": null,
+    "protocols": [
+      "NFSV3",
+      "NFSV4"
+    ],
+    "rdma": false,
+    "rpclockd_port": null,
+    "rpcstatd_port": null,
+    "servers": 16,
+    "statd_lockd_log": false,
+    "userd_manage_gids": false,
+    "v4_domain": "",
+    "v4_krb": false,
+    "v4_krb_enabled": false
+  }
+}

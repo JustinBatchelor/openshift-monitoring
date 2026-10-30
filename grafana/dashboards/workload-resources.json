@@ -1,0 +1,313 @@
+{
+  "uid": "workload-resources",
+  "title": "Workload Resources",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "America/New_York",
+  "refresh": "1m",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "tags": [
+    "openshift",
+    "managed"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "CPU used by namespace (cores)",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (rate(container_cpu_usage_seconds_total{container!=\"\",container!=\"POD\",namespace!=\"\"}[5m]))",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "cores",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "CPU requested by namespace",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (kube_pod_container_resource_requests{resource=\"cpu\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "cores",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "CPU limits by namespace",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (kube_pod_container_resource_limits{resource=\"cpu\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "cores",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Memory used by namespace",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (container_memory_working_set_bytes{container!=\"\",container!=\"POD\",namespace!=\"\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Memory requested by namespace",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (kube_pod_container_resource_requests{resource=\"memory\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "Memory limits by namespace",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace) (kube_pod_container_resource_limits{resource=\"memory\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Container restarts in 1 hour",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (namespace,pod) (increase(kube_pod_container_status_restarts_total[1h]))",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    }
+  ]
+}

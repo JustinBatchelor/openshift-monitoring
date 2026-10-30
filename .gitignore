@@ -1,0 +1,7 @@
+.venv/
+.secrets/
+.state/
+__pycache__/
+*.pyc
+.DS_Store
+rendered*.yaml

@@ -1,0 +1,23 @@
+cluster: sno
+storageClass: truenas-monitoring-iscsi
+prometheus:
+  storage: 50Gi
+  retention: 15d
+  retentionSize: 40GB
+alertmanager:
+  storage: 5Gi
+slack:
+  criticalChannel: '#cluster-critical'
+  warningChannel: '#cluster-warnings'
+  groupWait: 30s
+  groupInterval: 5m
+  criticalRepeat: 1h
+  warningRepeat: 12h
+healthchecks:
+  periodSeconds: 60
+  graceSeconds: 240
+notifications:
+  timezone: America/New_York
+  weekdays: [monday, tuesday, wednesday, thursday, friday]
+  start: '09:00'
+  end: '18:00'

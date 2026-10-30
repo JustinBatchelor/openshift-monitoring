@@ -1,0 +1,313 @@
+{
+  "uid": "capacity-storage",
+  "title": "Capacity Storage",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "America/New_York",
+  "refresh": "1m",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "tags": [
+    "openshift",
+    "managed"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "Node CPU utilization",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1 - avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m]))",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Node memory utilization",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Local filesystem available",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay|squashfs\"}",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "PVC available capacity (reported only)",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "kubelet_volume_stats_available_bytes",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "PVC used capacity (reported only)",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "kubelet_volume_stats_used_bytes",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "Prometheus samples ingested per second",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(prometheus_tsdb_head_samples_appended_total[5m])",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Prometheus persistent block storage",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "prometheus_tsdb_storage_blocks_bytes",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    }
+  ]
+}

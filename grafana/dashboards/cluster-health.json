@@ -1,0 +1,271 @@
+{
+  "uid": "cluster-health",
+  "title": "Cluster Health",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "America/New_York",
+  "refresh": "1m",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "tags": [
+    "openshift",
+    "managed"
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "Nodes ready",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "kube_node_status_condition{condition=\"Ready\",status=\"true\"}",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Operators available",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cluster_operator_conditions{condition=\"Available\"}",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Operators degraded",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cluster_operator_conditions{condition=\"Degraded\"}",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Firing alerts by severity",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "count by (severity) (ALERTS{alertstate=\"firing\",alertname!=\"Watchdog\"})",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Monitoring scrape targets",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up{namespace=\"openshift-monitoring\"}",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "Notification failures in 1 hour",
+      "type": "timeseries",
+      "description": "Missing series means unavailable telemetry, not zero usage. NFS directory PVCs may not report capacity or enforce quotas.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "openshift"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (integration) (increase(alertmanager_notifications_failed_total[1h]))",
+          "legendFormat": "{{namespace}} {{pod}} {{node}} {{name}} {{persistentvolumeclaim}} {{instance}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No metrics",
+          "custom": {
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      }
+    }
+  ]
+}
